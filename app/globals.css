@@ -1,5 +1,6 @@
 @import "tailwindcss";
-
+/* @custom-variant dark (&:where(.dark, .dark *)); */
+/* 
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -23,4 +24,186 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+} */
+
+/* @media print{
+  body *{
+    visibility: hidden;
+  }
+  #printablearea,#printablearea * {
+    visibility: visible;
+  }
+  #printablearea{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+} */
+
+
+.colorpickers .react-colorful {
+  width: 100%;
+  height: 250px;
+}
+.colorpickers .react-colorful__saturation {
+  border-radius: 5px;
+  border-bottom: none;
+}
+.colorpickers .react-colorful__hue,.colorpickers .react-colorful__alpha {
+  height: 10px;
+  border-radius: 10px;
+  margin-top:10px;
+
+}
+
+.colorpickers .react-colorful__hue-pointer,.colorpickers .react-colorful__alpha-pointer,.colorpickers .react-colorful__saturation-pointer{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* input[type="date"]::-webkit-calendar-picker-indicator { */
+  /* filter: brightness(0) invert(1); Makes icon white */
+  /* cursor: pointer; */
+/* } */
+
+.custom-li::marker{
+  color: var(--bullet-color);
+}
+/* :root{
+  --selected-font :var(--font-rubik)
+} */
+.fontStyle{
+  font-family: var(--current-font);
+}
+
+/* -----------------------------------Layout------------------------------------------------- */
+
+.fullWidth{
+ display:grid;
+}
+.column_layout_1{
+  display:grid;
+  grid-template-columns: 65% 35%;
+}
+.column_layout_2{
+  display:grid;
+  grid-template-columns: 60% 40%;
+}
+.column_layout_3{
+  display:grid;
+  grid-template-columns: 50% 50%;
+}
+.column_layout_4{
+  display:grid;
+  grid-template-columns: 40% 60%;
+}
+.column_layout_5{
+  display:grid;
+  grid-template-columns: 35% 65%;
+}
+.reverse_column_layout_1{
+  display:grid;
+  grid-template-columns: 35% 65%;
+}
+.reverse_column_layout_2{
+  display:grid;
+  grid-template-columns: 40% 60%;
+}
+.reverse_column_layout_3{
+  display:grid;
+  grid-template-columns: 50% 50%;
+}
+.reverse_column_layout_4{
+  display:grid;
+  grid-template-columns: 60% 40%;
+}
+.reverse_column_layout_5{
+  display:grid;
+  grid-template-columns: 65% 35%;
+}
+input[type="checkbox"]:hover {
+  background-color: inherit;
+  border-color: inherit;
+  box-shadow: none;
+}
+
+.scroll-fix {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@media screen and (min-width:1024px) and (max-width:1100px) {
+  .prviewScale{
+    transform: scale(.96);
+  }
+  .mainPreviewScale{
+    transform: scale(.89);
+  }
+}
+@media screen and (min-width:768px) and (max-width:875px) {
+
+  .mainPreviewScale{
+    transform: scale(.86);
+  }
+}
+
+@media screen and (min-width:768px) and (max-width:800px) {
+  .prviewScale{
+    transform: scale(.75);
+  }
+}
+@media screen and (min-width:800px) and (max-width:900px) {
+  .prviewScale{
+    transform: scale(.81);
+  }
+}
+@media screen and (min-width:900px) and (max-width:1000px) {
+  .prviewScale{
+    transform: scale(.9);
+  }
+}
+/* grid Layout for AddSection */
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  .gridLayout{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width:700px) and (max-width:1024px) {
+  .gridLayout{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width:550px) and (max-width:600px) {
+  .customLayout{
+    transform: translateX(40px);
+  }
+}
+@media screen and (min-width:525px) and (max-width:550px) {
+  .customLayout{
+    transform: translateX(80px);
+  }
+}
+@media screen and (min-width:500px) and (max-width:525px) {
+  .customLayout{
+    transform: translateX(110px);
+  }
+}
+/* grid Layout for ReviewPage */
+@media screen and (min-width:768px) and (max-width:820px) {
+  .ReviewPageResponsive{
+    transform: scale(.9);
+  }
+}
+@media screen and (min-width:540px) and (max-width:600px) {
+  .ReviewPageResponsive{
+    transform: scale(.9);
+  }
+}
+@media screen and (min-width:500px) and (max-width:540px) {
+  .ReviewPageResponsive{
+    transform: scale(.81);
+  }
 }
