@@ -139,6 +139,7 @@ export default function Heading() {
             },
           }}
           register={register}
+          error={errors.jobtitle}
         />
         <Inputs
           type="email"
@@ -161,7 +162,9 @@ export default function Heading() {
         name = "locationtitle"
         placeholder="Please Enter Your Location"
         register={register}
-        validation={{pattern:{value:/^[A-Za-z\s]+$/i,message:"Name Must be Character"}}}
+        validation={{pattern:{value:/^[A-Za-z\s,]+$/i,
+          message:"Location may include letters, spaces, and commas only"}}}
+          error={errors.locationtitle}
         />
         {templateName && (
           <div>
@@ -198,19 +201,19 @@ export default function Heading() {
               register={register}
               validation={{
                 validate: {
-                  // notEmpty: (val) => {
-                  //   if (typeof val !== "string" || !val.trim()) {
-                  //     return "Link is required";
-                  //   }
-                  //   return true;
-                  // },
+                  notEmpty: (val) => {
+                    if (typeof val !== "string" || !val.trim()) {
+                      return "Link is required";
+                    }
+                    return true;
+                  },
                   isUrl: (val) => {
-                    // if (typeof val !== "string") return "Link is required";
-                    if(typeof val !== "string") return true;
-                    const trimmed = val.trim();
-                    if(!trimmed) return true
+                    if (typeof val !== "string") return "Link is required";
+                    // if(typeof val !== "string") return true;
+                    // const trimmed = val.trim();
+                    // if(!trimmed) return true
                     try {
-                      new URL(trimmed);
+                      new URL(val);
                       return true;
                     } catch {
                       return "Please enter a valid URL";

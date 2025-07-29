@@ -4,6 +4,7 @@ import { fontSizetypes } from "@/store/slices/styleSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLink, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
@@ -42,13 +43,13 @@ export default function HeadingSection({
           className="font-bold"
           style={{ color: fontColor.outer, fontSize: fontSize.mainheading }}
         >
-          {name || "Arun Rana"}
+          {name || "John Doe"}
         </h1>
         <h3
           className="font-medium"
           style={{ color: fontColor.inner, fontSize: fontSize.heading }}
         >
-          {jobtitle || "front End Develeoper"}
+          {jobtitle || "front End Developer"}
         </h3>
         <div
           className="flex gap-x-2 items-center"
@@ -61,7 +62,8 @@ export default function HeadingSection({
             </p>
           </div>
           <div className="flex items-center gap-x-1">
-            <p className="text-[14.5px] translate-y-[1.5px]">{locationtitle}</p>
+            <FaLocationDot/>
+            <p className="text-[14.5px] translate-y-[1.5px]">{locationtitle || "City,State"}</p>
           </div>
           <div className="flex items-center gap-x-1">
             <IoMail /> <a href={`mailto:${email}`} className="hover:underline underline-offset-1">{email || "xxxxx@gmail.com"}</a>

@@ -71,7 +71,7 @@ const SaveResumeData = useCallback((  dispatch: AppDispatch,
       let storedSessionData:propsData[]  = [];
       if(pageName !== "skills"){
         const Getdata = sessionStorage.getItem(pageName) || "";
-      if(Getdata){
+      if(Getdata && pageName !== "heading"){
         const parsedData = JSON.parse(Getdata);
         storedSessionData = [...parsedData,data]
       }else{
