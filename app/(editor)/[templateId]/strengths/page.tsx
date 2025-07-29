@@ -133,11 +133,11 @@ export default function Strengths() {
             // }
           )}
           />
-          {errors.description && (
+          {/* {errors.description && (
             <p className="text-red-500 text-sm absolute top-full">
               {errors.description.message}
             </p>
-          )}
+          )} */}
         </div>
         <button
           type="submit"

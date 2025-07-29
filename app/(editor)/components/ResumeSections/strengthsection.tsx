@@ -10,6 +10,7 @@ export default function StrengthSection({
   const Strengths = useSelector(
     (state: RootState) => state.resumeBuilder.strength
   );
+  const Ifsome = Strengths.some(d => d.description.trim() !== "");
   return (
     <div
       className={`${
@@ -19,14 +20,18 @@ export default function StrengthSection({
       }`}
     >
       <h2 className="font-medium" style={{color:fontColor.outer,fontSize:fontSize.heading}}>Strengths</h2>
-      <div style={{border:`1.5px solid ${fontColor.outer}`}}></div>
+      <div style={{border:`1.5px solid ${fontColor.outer}`}} ></div>
       {Strengths.length > 0
-        ? Strengths.map(({ id, strengthsname, description }) => (
-            <div key={id} className={`${!!description ? "" : "grid grid-cols-2"}`} style={{fontSize:fontSize.para,lineHeight:(lineHeight === 1.1 ? 1.2 : lineHeight)}}>
+        ? <div className={`${Ifsome ? "" : "grid grid-cols-2"}`}>
+            {
+              Strengths.map(({ id, strengthsname, description }) => (
+            <div key={id}  style={{fontSize:fontSize.para,lineHeight:(lineHeight === 1.1 ? 1.2 : lineHeight)}}>
               <h3 className="font-semibold" style={{fontSize:fontSize.mainpara,color:fontColor.inner}}>{strengthsname}</h3>
               {!!description && <p >{description}</p>}
             </div>
           ))
+            }
+        </div>
         : ["Delegation","Analytical thinking","Teamwork"].map((d, i) => (
             <div key={i}  style={{fontSize:fontSize.para,lineHeight:(lineHeight === 1.1 ? 1.2 : lineHeight)}}>
               <h3 className="font-semibold" style={{fontSize:fontSize.mainpara,color:fontColor.inner}}>{d}</h3>
