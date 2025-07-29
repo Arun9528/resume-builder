@@ -134,7 +134,7 @@ export default function Heading() {
           placeholder="Please Enter Your Job title"
           validation={{
             pattern: {
-              value: /^[A-Za-z]+$/i,
+              value: /^[A-Za-z\s]+$/i,
               message: "Name must be character ",
             },
           }}
@@ -161,7 +161,7 @@ export default function Heading() {
         name = "locationtitle"
         placeholder="Please Enter Your Location"
         register={register}
-        validation={{pattern:{value:/^[A-Za-z]+$/i,message:"Name Must be Character"}}}
+        validation={{pattern:{value:/^[A-Za-z\s]+$/i,message:"Name Must be Character"}}}
         />
         {templateName && (
           <div>
@@ -173,7 +173,8 @@ export default function Heading() {
               type="file"
               id="profile"
               {...register("profilephoto")}
-              className="border border-gray-300 rounded-md cursor-pointer file:cursor-pointer md:w-72 w-full file:bg-gray-400 file:py-2 file:px-2 file:text-white"
+              className="border border-gray-300 rounded-md cursor-pointer file:cursor-pointer md:w-72 w-full
+               file:bg-gray-400 file:py-2 file:px-2 file:text-white"
               accept="image/jpeg,image/jpg,image/png"
             />
           </div>
@@ -197,16 +198,19 @@ export default function Heading() {
               register={register}
               validation={{
                 validate: {
-                  notEmpty: (val) => {
-                    if (typeof val !== "string" || !val.trim()) {
-                      return "Link is required";
-                    }
-                    return true;
-                  },
+                  // notEmpty: (val) => {
+                  //   if (typeof val !== "string" || !val.trim()) {
+                  //     return "Link is required";
+                  //   }
+                  //   return true;
+                  // },
                   isUrl: (val) => {
-                    if (typeof val !== "string") return "Link is required";
+                    // if (typeof val !== "string") return "Link is required";
+                    if(typeof val !== "string") return true;
+                    const trimmed = val.trim();
+                    if(!trimmed) return true
                     try {
-                      new URL(val.trim());
+                      new URL(trimmed);
                       return true;
                     } catch {
                       return "Please enter a valid URL";
