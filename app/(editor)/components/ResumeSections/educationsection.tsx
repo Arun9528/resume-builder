@@ -35,12 +35,16 @@ export default function EducationSection({highlightShow,paths,fontColor,fontSize
                   <div className="flex justify-between">
                      <h3>{collegename}</h3>
                      <div className="flex gap-x-3 ">
-                    <div className="flex items-center gap-x-1">
+                    {
+                      (startdate && (enddate || stillgoingon)) && (
+                        <div className="flex items-center gap-x-1">
                       <BiSolidCalendar />
                       <p>{startdate} - {stillgoingon ? "Still Going ON" : enddate}</p>
                       {/* <span>-</span>
                       <p>{stillgoingon ? "Still Going ON" : enddate}</p> */}
                     </div>
+                      )
+                    }
                     <div  className="flex items-center gap-x-1">
                         <IoLocationSharp />
                         <p className="translate-y-[1.5px]">{Educationlocation}</p>
