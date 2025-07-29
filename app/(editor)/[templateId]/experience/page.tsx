@@ -99,9 +99,22 @@ export default function ExperiencePage() {
 
   useEffect(() => {
     if (noExperience) {
+      const d = {
+      id:crypto.randomUUID(),
+      company: "",
+      jobtitle: "",
+      explocation: "",
+      startDate: "",
+      endDate: "",
+      present: false,
+      noexperience: noExperience,
+      description: [{ value: "" }],
+    }
+      sessionStorage.setItem("experience",JSON.stringify([d]));
+      dispatch(addExperience(d))
       clearErrors();
     }
-  }, [clearErrors, noExperience]);
+  }, [clearErrors, noExperience,dispatch]);
   useEffect(()=>{
     if(!visible) return;
     const timeout = setTimeout(()=>{

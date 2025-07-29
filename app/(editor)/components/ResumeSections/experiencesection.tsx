@@ -38,7 +38,7 @@ export default function ExperienceSections({
               }) => (
                 <div key={id}>
                   {noexperience ? (
-                    <h2 className="font-semibold" style={{color:fontColor.inner,fontSize:fontSize.mainpara}}>Fresher</h2>
+                    <h2 className="font-semibold" key={id} style={{color:fontColor.inner,fontSize:fontSize.mainpara}}>Fresher</h2>
                   ) : (
                     <div style={{fontSize:fontSize.para,lineHeight: lineHeight === 1 ? 1.1 : lineHeight}}>
                       <p className="font-bold" style={{fontSize:fontSize.mainpara,color:fontColor.inner}}>{company}</p>
