@@ -22,9 +22,9 @@ export default function StrengthSection({
       <div style={{border:`1.5px solid ${fontColor.outer}`}}></div>
       {Strengths.length > 0
         ? Strengths.map(({ id, strengthsname, description }) => (
-            <div key={id}  style={{fontSize:fontSize.para,lineHeight:(lineHeight === 1.1 ? 1.2 : lineHeight)}}>
+            <div key={id} className={`${!!description ? "" : "grid grid-cols-2"}`} style={{fontSize:fontSize.para,lineHeight:(lineHeight === 1.1 ? 1.2 : lineHeight)}}>
               <h3 className="font-semibold" style={{fontSize:fontSize.mainpara,color:fontColor.inner}}>{strengthsname}</h3>
-              <p >{description}</p>
+              {!!description && <p >{description}</p>}
             </div>
           ))
         : ["Delegation","Analytical thinking","Teamwork"].map((d, i) => (

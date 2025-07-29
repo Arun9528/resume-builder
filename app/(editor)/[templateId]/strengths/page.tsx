@@ -123,12 +123,15 @@ export default function Strengths() {
           </label>
           <textarea
             id="description"
-            className="outline-0 w-full border border-gray-300 rounded-md p-4 mt-2 placeholder:text-gray-600 placeholder:font-semibold"
+            className="outline-0 w-full border border-gray-300 rounded-md p-4 mt-2
+             placeholder:text-gray-600 placeholder:font-semibold"
             rows={5}
             placeholder="Please Describe Your Project"
-            {...register("description", {
-              required: "Description is Required",
-            })}
+            {...register("description",
+            //    {
+            //   required: "Description is Required",
+            // }
+          )}
           />
           {errors.description && (
             <p className="text-red-500 text-sm absolute top-full">
