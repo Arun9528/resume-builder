@@ -34,7 +34,7 @@ export default function ProjectsSection({
               <h3 className="font-semibold">{projectname}</h3>
               <div className="flex gap-x-1 items-center">
                   <FaLink size={14}/>
-                  <a href={projectLink} className="underline-offset-1 hover:underline" target="_blank">{projectLink}</a>
+                  <a href={projectLink} className="underline-offset-2 underline" target="_blank">{projectLink}</a>
               </div>
               <p className="text-justify">{description}</p>
             </div>
@@ -51,7 +51,7 @@ export default function ProjectsSection({
                 </h3>
                 <div className="flex gap-x-1 items-center">
                   <FaLink size={14}/>
-                  <a href="#" className="underline-offset-1 hover:underline" target="_blank">https://www.xxxxxxxxxxxxxxx.com</a>
+                  <a href="#" className="underline-offset-2 underline" target="_blank">https://www.xxxxxxxxxxxxxxx.com</a>
                 </div>
                 <p className="text-justify">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
