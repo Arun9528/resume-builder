@@ -123,6 +123,7 @@ export type ProjectsData = {
   id: string;
   projectname: string;
   description: string;
+  projectLink:string;
 };
 export type EducationData = {
   id: string;

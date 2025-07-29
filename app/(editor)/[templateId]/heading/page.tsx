@@ -209,9 +209,6 @@ export default function Heading() {
                   },
                   isUrl: (val) => {
                     if (typeof val !== "string") return "Link is required";
-                    // if(typeof val !== "string") return true;
-                    // const trimmed = val.trim();
-                    // if(!trimmed) return true
                     try {
                       new URL(val);
                       return true;

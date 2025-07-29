@@ -45,6 +45,7 @@ export default function Projects() {
     defaultValues: {
       projectname: "",
       description: "",
+      projectLink:"",
     },
     mode: "onChange",
   });
@@ -78,6 +79,7 @@ export default function Projects() {
       setValue("id", findIndex.id);
       setValue("projectname", findIndex.projectname);
       setValue("description", findIndex.description);
+      setValue("projectLink",findIndex.projectLink)
     }
   };
   const onNext = async () => {
@@ -124,6 +126,30 @@ export default function Projects() {
               minLength: { value: 3, message: "Minimum 3 Character required" },
             }}
             error={errors.projectname}
+          />
+        </div>
+        <div>
+          <Inputs 
+            type="text"
+            label="Project Link"
+            name="projectLink"
+            placeholder="Please Write Your project link"
+            register={register}
+            validation={{
+              required:" Link is Required",
+              validate:{
+                isUrl: (val) => {
+                    if (typeof val !== "string") return "Link is required";
+                    try {
+                      new URL(val);
+                      return true;
+                    } catch {
+                      return "Please enter a valid URL";
+                    }
+                  },
+              }
+            }}
+            error={errors.projectLink}
           />
         </div>
         <div className="relative">
@@ -173,10 +199,11 @@ export default function Projects() {
         <h2 className="mt-4 text-3xl font-bold text-gray-500">Projects</h2>
         <div>
           {ProjectsData.length > 0 ? (
-            ProjectsData.map(({ id, projectname, description }) => (
+            ProjectsData.map(({ id, projectname, description,projectLink }) => (
               <div key={id} className="mt-3 flex justify-between items-center">
                 <div>
                   <h3>Project Name:- {projectname}</h3>
+                  <a href={projectLink} target="_blank" className="underline-offset-1 hover:underline">Link : {projectLink}</a>
                   <p>Description:- {description}</p>
                 </div>
                 <div>
