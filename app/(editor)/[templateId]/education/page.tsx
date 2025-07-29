@@ -135,28 +135,6 @@ export default function Education() {
             validation={{ required: "Degree Name is Required" }}
             error={errors.degree}
           />
-          {/* <Inputs
-            type="Date"
-            label="Start Date"
-            name="startdate"
-            register={register}
-            validation={{
-              required: "Start Date is Required",
-              validate: {
-                notFuture: (v) =>
-                  v <= todayString || "Start Date can't be in the future",
-                beforeEnd: (v) => {
-                  const endDateVal = getValues("enddate");
-                  return (
-                    !endDateVal ||
-                    v < endDateVal ||
-                    "Start Date must be before End Date"
-                  );
-                },
-              },
-            }}
-            error={errors.startdate}
-          /> */}
           <Inputs 
             type="text"
             label="To"
@@ -164,7 +142,7 @@ export default function Education() {
             placeholder="Please Enter Your Start Date"
             register={register}
             validation={{
-              required:"Please Write your Start Date",
+              // required:"Please Write your Start Date",
               pattern:{
                 value:/^\d+$/,
                 message:"Only Number are Allowed"
@@ -183,43 +161,14 @@ export default function Education() {
             error={errors.startdate}
           />
           <div className="flex items-end gap-x-5">
-            {/* <Inputs
-              type="Date"
-              label="End Date"
-              name="enddate"
-              register={register}
-              validation={{
-                required:
-                  !still &&
-                  "End Date is Required if Still going on is not Checked",
-                validate: {
-                  notFuture: (v) =>
-                    still
-                      ? true
-                      : v <= todayString || "End Date can't be in the future",
-                  afterStart: (v) => {
-                    if (still) return true;
-                    const startDateVal = getValues("startdate");
-                    return (
-                      !startDateVal ||
-                      v > startDateVal ||
-                      "End Date must be after Start Date"
-                    );
-                  },
-                },
-              }}
-              disabled={still}
-              error={errors.enddate}
-            /> */}
-
             <Inputs
               type="text"
-              label="Form"
+              label="From"
               name="enddate"
               placeholder="Please Enter Your End date"
               register={register}
               validation={{
-                required:!still && "End Date is Required if Still going on is not Checked",
+                // required:!still && "End Date is Required if Still going on is not Checked",
                 pattern:{
                   value:/^\d+$/,
                   message:"Only Number are Allowed"
