@@ -35,12 +35,12 @@ export default function Dragitem({
     <div  ref={setNodeRef}
       {...attributes}
       {...listeners}
-      style={style} className="flex items-center border rounded-sm ">
-      <IoMenu className="flex-none ms-2"/>
-      <p className="capitalize px-3 py-2 cursor-pointer text-center flex-1">
+      style={style} className="flex items-center border rounded-sm draggable-item ">
+      <IoMenu className="flex-none ms-0.5 sm:ms-2"/>
+      <p className="capitalize sm:px-3 py-1 sm:py-2 cursor-pointer text-center flex-1 text-[12px] font-semibold sm:font-medium sm:text-[16px]">
       {id}
     </p>
-    <button onClick={handleDelete} className="flex-none px-2">
+    <button onClick={handleDelete} className="flex-none sm:px-2">
       <IoClose className=" text-red-700 cursor-pointer"/>
     </button>
     </div>

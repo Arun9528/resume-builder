@@ -9,7 +9,7 @@ export default async function Sidebar({
 }) {
   return (
     <div 
-    className=" overflow-hidden lg:border-r lg:border-r-gray-500/35 md:pb-5 md:pt-3 pt-0 lg:sticky lg:top-0 col-span-2 lg:col-span-1"
+    className=" sm:overflow-hidden lg:border-r lg:border-r-gray-500/35 md:pb-5 md:pt-3 pt-10 lg:sticky lg:top-0 col-span-2 lg:col-span-1"
     >
       <div className="text-center hidden lg:block  ">
         <Link href={"/"} className="text-[1.7vw] font-bold">

@@ -149,7 +149,21 @@ input[type="checkbox"]:hover {
     transform: scale(.86);
   }
 }
-
+@media screen and (min-width:300px) and (max-width:350px) {
+  .prviewScale{
+    transform: scale(.63);
+  }
+}
+@media screen and (min-width:350px) and (max-width:400px) {
+  .prviewScale{
+    transform: scale(.73);
+  }
+}
+@media screen and (min-width:400px) and (max-width:500px) {
+  .prviewScale{
+    transform: scale(.85);
+  }
+}
 @media screen and (min-width:768px) and (max-width:800px) {
   .prviewScale{
     transform: scale(.75);
@@ -206,4 +220,23 @@ input[type="checkbox"]:hover {
   .ReviewPageResponsive{
     transform: scale(.81);
   }
+}
+@media screen and (min-width:400px) and (max-width:500px) {
+  .ReviewPageResponsive{
+    transform: scale(.71);
+  }
+}
+@media screen and (min-width:350px) and (max-width:400px) {
+  .ReviewPageResponsive{
+    transform: scale(.61);
+  }
+}
+@media screen and (min-width:300px) and (max-width:350px) {
+  .ReviewPageResponsive{
+    transform: scale(.51);
+  }
+}
+
+.draggable-item {
+  touch-action: none; /* Prevents browser scroll interference */
 }

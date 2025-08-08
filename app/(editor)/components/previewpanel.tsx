@@ -50,7 +50,7 @@ export default function Previewpanel({ templateId,isReveiwPage}: { templateId: T
         {CurrentPath && (
           <button
             type="button"
-            className="  bg-sky-500 py-1.5 px-4 text-white rounded-sm cursor-pointer "
+            className="  bg-sky-500 py-1.5 px-2 sm:px-4 text-white rounded-sm cursor-pointer text-[14px] sm:text-[16px] "
             onClick={handleOpenModal}
           >
             Edit

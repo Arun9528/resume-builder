@@ -48,7 +48,7 @@ export default function ClientSidebar({templateId}:clientSideProps) {
           <div key={i} className="group relative w-fit">
             <Link
               href={`${hrefs}`}
-              className={`transition-colors duration-300 font-semibold capitalize ${
+              className={`transition-colors duration-300 text-[14px] sm:text-[16px] font-semibold capitalize ${
                 active ? "text-sky-400 font-medium" : ""
               }`}
             >

@@ -71,7 +71,7 @@ export default function DownloadPDFButton({
   return (
     <button
       type="button"
-       className="px-5 py-1.5 z-10 bg-yellow-500 text-white rounded-md cursor-pointer "
+       className=" px-2 sm:px-5 py-1.5 z-10 bg-yellow-500 text-white rounded-md cursor-pointer text-[14px] sm:text-[16px]"
       onClick={generateResumePDF}
     >
       Download PDF / Save

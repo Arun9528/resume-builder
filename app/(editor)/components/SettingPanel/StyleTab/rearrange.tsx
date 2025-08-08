@@ -4,6 +4,7 @@ import {
   DndContext,
   DragEndEvent,
   PointerSensor,
+  TouchSensor,
   useDroppable,
   useSensor,
   useSensors,
@@ -63,7 +64,8 @@ export default function Rearrange() {
     const stored = sessionStorage.getItem("dragContents");
     return stored ? SaveDragData(templates,stored,templateName) : {first: [],secondLeft: [],secondRight: [],secondAll: []}
   });
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 10 } }));
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 10 } }),
+  useSensor(TouchSensor,{activationConstraint:{delay:250,tolerance:5}}));
   useEffect(() => {
     const removeCustom = (arr: string[]) => arr.map((d) => d.replaceAll(" (custom)", "").trim()).filter(Boolean);
     const hasAny = [dragContents.first,dragContents.secondAll,dragContents.secondLeft,dragContents.secondRight,]
@@ -196,11 +198,11 @@ export default function Rearrange() {
   }, [dragContents, dispatch,templateName,templates.other]);
 
   return (
-    <div className="p-4 bg-gray-100 flex flex-col gap-y-2 rounded-md w-full border mt-5">
+    <div className="p-1.5 sm:p-4 bg-gray-100 flex flex-col gap-y-2 rounded-md w-full border mt-5">
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         <div className="relative cursor-not-allowed ">
-          <FaLock className="absolute left-2 top-3" />
-          <p className="capitalize border px-3 py-2 rounded-sm text-center">
+          <FaLock className="absolute left-2 top-2 sm:top-3 text-[14px]  sm:text[16px]" />
+          <p className="capitalize border sm:px-3 py-1 sm:py-2 rounded-sm text-center text-[14px]  sm:text[16px]">
             Heading
           </p>
         </div>

@@ -12,7 +12,7 @@ export default function FormNavigation({
 }: FormNavigationProps) {
   const router = useRouter();
   const previousPath = prevPath === "/" ? "/" : `/${firstPart}${prevPath}`;
-  const linkbtnstyle = "text-black font-semibold text-lg underline-offset-4 rounded-md cursor-pointer transition-all hover:underline";
+  const linkbtnstyle = "text-black font-semibold sm:text-lg underline-offset-4 rounded-md cursor-pointer transition-all hover:underline";
   const handleBackroute = ()=>{
     router.push(previousPath)
   }

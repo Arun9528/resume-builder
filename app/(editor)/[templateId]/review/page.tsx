@@ -16,7 +16,7 @@ export default function Review(){
     return (
        <div className="flex flex-col justify-center items-center py-5 relative ">
          <FormNavigation  prevPath={prevPath} firstPart={firstPart} nextPath={nextPath}/>
-           <div className="flex justify-center gap-x-7 transform -translate-y-8 ">
+           <div className="flex justify-center gap-x-2 sm:gap-x-7  transform translate-x-7 sm:translate-0 -translate-y-7 sm:-translate-y-8 ">
              <DownloadPDFButton resumeRef={resumeRef}/>
            {isReviewPage && <Previewpanel templateId={path.split("/")[1] as TemplateKey} isReveiwPage={false}/>}
            </div>
