@@ -406,7 +406,7 @@ export default function ExperiencePage() {
         {isEdit && (
           <button
             type="button"
-            className={`px-4 py-2  rounded-md mt-2 ${
+            className={`px-4 py-2  rounded-md mt-2 text-white ${
               noExperience
                 ? "cursor-not-allowed bg-gray-400"
                 : "bg-gray-600 cursor-pointer"

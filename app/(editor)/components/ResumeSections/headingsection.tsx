@@ -82,7 +82,7 @@ export default function HeadingSection({
                 return (
                   <div key={id} className="flex items-center gap-x-1">
                     {linkIcon}
-                    <Link href={links ?? link} className="-translate-y-[1.5px]">{links ?? link} </Link>
+                    <Link href={link} target="_blank" className="-translate-y-[1.5px]">{links ?? link} </Link>
                   </div>
                 );
               })
