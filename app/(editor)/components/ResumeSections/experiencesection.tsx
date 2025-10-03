@@ -100,7 +100,7 @@ export default function ExperienceSections({
                           </div>
                         </div>
                       </div>
-                      {description?.length > 0 && (
+                      {description?.length > 0 && description[0].value !== "" &&(
                         <ul className="ps-4 list-disc">
                         {description?.map((d, i) => (
                           <li
