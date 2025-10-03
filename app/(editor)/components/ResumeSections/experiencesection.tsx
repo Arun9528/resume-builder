@@ -100,8 +100,9 @@ export default function ExperienceSections({
                           </div>
                         </div>
                       </div>
-                      <ul className="ps-4 list-disc">
-                        {description.map((d, i) => (
+                      {description?.length > 0 && (
+                        <ul className="ps-4 list-disc">
+                        {description?.map((d, i) => (
                           <li
                             key={i}
                             className="text-justify custom-li"
@@ -113,10 +114,11 @@ export default function ExperienceSections({
                               }
                             }
                           >
-                            {d.value}
+                            {d?.value}
                           </li>
                         ))}
                       </ul>
+                      )}
                     </div>
                   )}
                 </div>

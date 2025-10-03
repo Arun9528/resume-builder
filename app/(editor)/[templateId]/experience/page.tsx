@@ -470,7 +470,7 @@ export default function ExperiencePage() {
                   </span>
                 </div>
                 <p className="text-gray-600">
-                  {exp.company} - {exp.explocation}
+                  {exp?.company} - {exp?.explocation} {exp?.month && <span>{exp?.month} Months</span>}
                 </p>
                 <ul className="list-disc pl-5 mt-2">
                   {exp.description.map((d, i) => (
