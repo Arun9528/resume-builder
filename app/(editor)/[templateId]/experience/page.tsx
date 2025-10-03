@@ -266,7 +266,7 @@ export default function ExperiencePage() {
         />
         <Inputs
           type="text"
-          label="To"
+          label="From"
           name="startDate"
           placeholder="Enter Year (e.g., 01/2023)"
           register={register}
@@ -308,7 +308,7 @@ export default function ExperiencePage() {
         <div className="flex items-end gap-x-5 mb-3">
           <Inputs
             type="text"
-            label="Form"
+            label="To"
             name="endDate"
             placeholder="Enter Year (e.g., 01/2023)"
             register={register}
@@ -321,15 +321,19 @@ export default function ExperiencePage() {
               },
               validate: {
                 notFuture: (v) => {
+                  if(isPresent) return true;
                   const [month, year] = v?.toString()?.split("/")?.map(Number);
+                  const now = new Date();
+                  const currentYear = now.getFullYear();
+                  const currentMonth = now.getMonth() + 1;
                   return (
-                    year < todayYear ||
-                    (year === todayYear && month <= todayMonth) ||
+                    year < currentYear ||
+                    (year === currentYear && month <= currentMonth) ||
                     "End date cannot be in the future"
                   );
                 },
                 afterStart: (v) => {
-                  if (isPresent) return true;
+                  if (isPresent || !v?.toString()) return true;
                   const startDateVal = watch("startDate");
                   if (!startDateVal) return true;
                   const [endMonth, endYear] = v?.toString()?.split("/")?.map(Number);
