@@ -67,18 +67,18 @@ export default function ExperienceSections({
                       <p
                         className="font-bold"
                         style={{
-                          fontSize: fontSize.mainpara,
-                          color: fontColor.inner,
+                          fontSize: fontSize?.mainpara,
+                          color: fontColor?.inner,
                         }}
                       >
-                        {company}
+                        {jobtitle}
                       </p>
                       <div className="flex justify-between">
-                        <p>{jobtitle}</p>
+                        <p>{company}</p>
                         <div className="flex gap-x-3 flex-wrap">
                           <div className="flex items-center gap-x-1">
                             <BiSolidCalendar
-                              style={{ color: fontColor.inner }}
+                              style={{ color: fontColor?.inner }}
                             />
                             {startDate && (present || endDate) && (
                               <p className="translate-y-[1.5px]">
@@ -91,7 +91,7 @@ export default function ExperienceSections({
                           </div>
                           <div className="flex items-center gap-x-1">
                             <IoLocationSharp
-                              style={{ color: fontColor.inner }}
+                              style={{ color: fontColor?.inner }}
                             />
                             <p className="translate-y-[1.5px]">
                               {" "}
