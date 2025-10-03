@@ -49,6 +49,7 @@ export default function ExperiencePage() {
       explocation: "",
       startDate: "",
       endDate: "",
+      month:"",
       present: false,
       noexperience: false,
       description: [{ value: "" }],
@@ -106,6 +107,7 @@ export default function ExperiencePage() {
       explocation: "",
       startDate: "",
       endDate: "",
+      month:"",
       present: false,
       noexperience: noExperience,
       description: [{ value: "" }],
@@ -216,15 +218,11 @@ export default function ExperiencePage() {
               "No Experience is Required if You are Fresher",
           })}
           className="size-4"
-          // disabled={
-          //   isnoExperienceDisabled ||
-          //   (!BackAndRealodpage && Experiences.length > 0)
-          // }
           {...(isClient ? {disabled:isDisabled} : {})}
         />
         {isClient && Experiences.length === 0 && errors.noexperience && (
           <p className="text-red-500 text-sm ms-5">
-            {errors.noexperience.message}
+            {errors?.noexperience.message}
           </p>
         )}
       </div>
@@ -242,7 +240,7 @@ export default function ExperiencePage() {
             required: "Company Name is Required",
             minLength: { value: 3, message: "Company at lease 3 Character" },
           }}
-          error={errors.company}
+          error={errors?.company}
           disabled={noExperience}
         />
         <Inputs
@@ -252,7 +250,7 @@ export default function ExperiencePage() {
           placeholder="Please Enter Your Jobtitle Name"
           register={register}
           validation={{ required: "JobTitle Name is Required" }}
-          error={errors.jobtitle}
+          error={errors?.jobtitle}
           disabled={noExperience}
         />
         <Inputs
@@ -262,36 +260,36 @@ export default function ExperiencePage() {
           placeholder="Please Enter Your Location Name"
           register={register}
           validation={{ required: "Location Name is Required " }}
-          error={errors.explocation}
+          error={errors?.explocation}
           disabled={noExperience}
         />
         <Inputs
           type="text"
           label="To"
           name="startDate"
-          placeholder="Please Enter Your Start Date"
+          placeholder="Enter Year (e.g., 2023)"
           register={register}
           validation={{
-            required: "Please Write your Start Date",
+            // required: "Please Write your Start Date",
             pattern: {
-              value: /^\d+$/,
-              message: "Only Number are Allowed",
+              value: /^\d{4}$/,
+              message: "Year must be 4 digits",
             },
             validate: {
+             empty:(v)=> (v === "" || v === null) || true,
               notFuture: (v) =>
                 Number(v) <= todayYear || "Start Date can't be in the future",
               beforEnd: (v) => {
                 const endDateval = watch("endDate");
+                if(!endDate) return true
                 return (
-                  !endDateval ||
-                  v < endDateval ||
+                  Number(v) < Number(endDateval) ||
                   "Start Date must be before End Date"
                 );
               },
             },
-            maxLength: { value: 4, message: "Year Must be at 4 digit" },
           }}
-          error={errors.startDate}
+          error={errors?.startDate}
           disabled={noExperience}
         />
         <div className="flex items-end gap-x-5 mb-3">
@@ -299,17 +297,18 @@ export default function ExperiencePage() {
             type="text"
             label="Form"
             name="endDate"
-            placeholder="Please Enter Your End date"
+            placeholder="Enter Year (e.g., 2023)"
             register={register}
             validation={{
-              required:
-                !isPresent &&
-                "End Date is Required if Still going on is not Checked",
+              // required:
+              //   !isPresent &&
+              //   "End Date is Required if present is not Checked",
               pattern: {
-                value: /^\d+$/,
-                message: "Only Number are Allowed",
+                value: /^\d{4}$/,
+                message: "Year must be 4 digits",
               },
               validate: {
+                empty:(v)=> (v === "" || v === null) || true,
                 notFuture: (v) =>
                   isPresent
                     ? true
@@ -318,17 +317,16 @@ export default function ExperiencePage() {
                 afterStart: (v) => {
                   if (isPresent) return true;
                   const startDateVal = watch("startDate");
+                  if(!startDateVal) return true;
                   return (
-                    !startDateVal ||
-                    v > startDateVal ||
+                    Number(v) > Number(startDateVal) ||
                     "End Date must be after Start Date"
                   );
                 },
               },
-              maxLength: { value: 4, message: "Year Must be 4 digit" },
             }}
             disabled={noExperience || isPresent}
-            error={errors.endDate}
+            error={errors?.endDate}
           />
           <div className="flex flex-col items-center">
             <input
@@ -351,11 +349,29 @@ export default function ExperiencePage() {
             </label>
           </div>
         </div>
+        <Inputs
+         type = "number"
+         label="Month"
+         name = "month"
+         placeholder="Enter Month (e.g.,1)"
+         register={register}
+         validation={{
+          validate:{
+            notMonth:(v)=>{
+              if(v === "" || v === null) return true;
+              const n = Number(v);
+              if (Number?.isNaN(n)) return "Month must be a number";
+              return (n >= 1 && n <= 12) || "Please month Should be 1 to 12";
+            }
+          }
+         }}
+         error={errors?.month}
+        />
         <div className="w-full">
-          {fields.map((field, index) => (
-            <div key={field.id}>
+          {fields?.map((field, index) => (
+            <div key={field?.id} >
               <Inputs
-                key={field.id}
+                key={field?.id}
                 type="text"
                 name={`description.${index}.value`}
                 label={`Description ${index + 1}`}
@@ -363,9 +379,9 @@ export default function ExperiencePage() {
                 register={register}
                 validation={{ required: "Description is Required" }}
                 disabled={noExperience}
-                error={errors.description?.[index]?.value}
+                error={errors?.description?.[index]?.value}
               />
-              {fields.length > 1 && (
+              {fields?.length > 1 && (
                 <div className="text-end">
                   <button
                   type="button"
@@ -386,7 +402,6 @@ export default function ExperiencePage() {
                 : "cursor-pointer text-teal-500 hover:underline"
             }`}
             onClick={handleAddDescription}
-            // onClick={()=> append({value:""})}
             disabled={noExperience}
           >
             Add Description
@@ -406,7 +421,7 @@ export default function ExperiencePage() {
         {isEdit && (
           <button
             type="button"
-            className={`px-4 py-2  rounded-md mt-2 ${
+            className={`px-4 py-2  rounded-md mt-2 text-white ${
               noExperience
                 ? "cursor-not-allowed bg-gray-400"
                 : "bg-gray-600 cursor-pointer"
@@ -415,7 +430,6 @@ export default function ExperiencePage() {
               reset();
               setIsEdit(false);
             }}
-            // disabled = {BackAndRealodpage}
           >
             Cancel
           </button>

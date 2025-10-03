@@ -97,14 +97,14 @@ export default function Inputs<
     "link",
     "layout",
   ];
-  const isIncludes = NameValues.includes(name);
+  const isIncludes = NameValues?.includes(name);
   const includeName = isIncludes
     ? "inline font-medium ps-2"
     : "block text-lg font-bold";
   const inclucdeNameforStyle = isIncludes
     ? "flex flex-row-reverse justify-end items-center "
-    : `space-y-1.5 relative ${name.includes("communicatelink") &&  "w-full" }`;
-  const isRadio = type === "radio" && "!size-3";
+    : `space-y-1.5 relative ${name?.includes("communicatelink") ?  "w-full" : "" }`;
+  const isRadio = type === "radio" ? "!size-3" : "";
   const uniqueValue = `${name}-${label}`;
   const Names = [
     "projectname",
@@ -118,12 +118,12 @@ export default function Inputs<
     "trainingandCoursename",
     "languagename","projectLink"
   ];
-  const fullWidth = Names.includes(name) ? "w-full" : "xl:w-80 lg:w-72 w-full ";
+  const fullWidth = Names?.includes(name) ? "w-full" : "xl:w-80 lg:w-72 w-full ";
   return (
     <div className={`${inclucdeNameforStyle} `}>
       <label
         htmlFor={uniqueValue}
-        className={`${includeName} ${disabled && "!text-gray-500"}`}
+        className={`${includeName} ${disabled ? "!text-gray-500" : ""}`}
       >
         {label}
       </label>
@@ -132,11 +132,12 @@ export default function Inputs<
         id={uniqueValue}
         autoComplete="off"
         placeholder={placeholder}
-        className={`outline-0 ps-2 border border-gray-300 py-2.5 rounded-md placeholder:text-gray-500  ${fullWidth} 
-        ${disabled && "bg-gray-400 cursor-not-allowed"}
-         ${type === "date" && "pe-3"} 
-         ${label.startsWith("Description") && "w-full"}
-         ${type === "checkbox" && " cursor-pointer !size-4 accent-green-600 "}
+        className={`outline-0 ps-2 border border-gray-300 py-2.5 rounded-md placeholder:text-gray-500  ${fullWidth}
+        ${name.includes("description") ? "!w-full" : ""} 
+        ${disabled ? "bg-gray-400 cursor-not-allowed" : ""}
+         ${type === "date" ? "pe-3" : ""} 
+         ${label.startsWith("Description") ? "w-full" : ""}
+         ${type === "checkbox" ? " cursor-pointer !size-4 accent-green-600 " : ""}
          ${isRadio}
          `}
         {...register(name, validation)}
@@ -146,7 +147,7 @@ export default function Inputs<
       />
       {error && (
         <p className="text-red-500 text-sm  absolute top-full">
-          {error.message}
+          {error?.message}
         </p>
       )}
     </div>
