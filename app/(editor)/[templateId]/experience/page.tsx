@@ -329,7 +329,7 @@ export default function ExperiencePage() {
                   );
                 },
                 afterStart: (v) => {
-                  if (isPresent || !v) return true;
+                  if (isPresent) return true;
                   const startDateVal = watch("startDate");
                   if (!startDateVal) return true;
                   const [endMonth, endYear] = v?.toString()?.split("/")?.map(Number);
