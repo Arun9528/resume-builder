@@ -120,7 +120,7 @@ export default function Inputs<
   ];
   const fullWidth = Names?.includes(name) ? "w-full" : "xl:w-80 lg:w-72 w-full ";
   return (
-    <div className={`${inclucdeNameforStyle} `}>
+    <div className={`${inclucdeNameforStyle} ${fullWidth} `}>
       <label
         htmlFor={uniqueValue}
         className={`${includeName} ${disabled ? "!text-gray-500" : ""}`}
@@ -132,7 +132,7 @@ export default function Inputs<
         id={uniqueValue}
         autoComplete="off"
         placeholder={placeholder}
-        className={`outline-0 ps-2 border border-gray-300 py-2.5 rounded-md placeholder:text-gray-500  ${fullWidth}
+        className={`outline-0 ps-2 border border-gray-300 py-2.5 rounded-md placeholder:text-gray-500 w-full
         ${name.includes("description") ? "!w-full" : ""} 
         ${disabled ? "bg-gray-400 cursor-not-allowed" : ""}
          ${type === "date" ? "pe-3" : ""} 

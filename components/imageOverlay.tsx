@@ -13,13 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ImageOverlay({Onsettingtab}: {Onsettingtab: boolean,}) {
   const paths = usePathname();
   const TemplateName = paths.split("/")[1]?.slice(-1);
-  const [templateId, setTemplateId] = useState<string>(TemplateName);
+  const [templateNo, setTemplateNo] = useState<string>(TemplateName);
   const router = useRouter();
   const Addsection = useSelector((state:RootState)=> state.style.addSection);
   const dispatch = useDispatch();
   const handleClick = (id: number) => {
     if (!Onsettingtab) return;
-    setTemplateId(id.toString());
+    setTemplateNo(id.toString());
     const isdragContents = sessionStorage.getItem("dragContents") || "";
     const newPath = paths.replace(TemplateName, id.toString());
     const newTemplateName = newPath.split("/")[1];
@@ -66,7 +66,7 @@ export default function ImageOverlay({Onsettingtab}: {Onsettingtab: boolean,}) {
               </Link>
             </div>
           )}
-          {+templateId === i + 1 && (
+          {+templateNo === i + 1 && (
             <div className="size-16 -right-9 absolute -bottom-8  rotate-45 bg-green-600">
               <FaCheck
                 color="white"

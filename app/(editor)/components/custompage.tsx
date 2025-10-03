@@ -151,6 +151,7 @@ export default function Custompage({ customName }: { customName: TemplateKey }) 
         append({ value: "" });
       }
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Showdata.normaldesciption, Showdata.listdescription]);
   const onSubmit: SubmitHandler<CustomPageData> = (data) => {
     if (isEdit) {

@@ -66,7 +66,7 @@ export default function ColorPicker(){
         const pairscolor = dynamicColorPairs[index];
         dispatch(setFontColor(pairscolor))
       }
-      
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
     useEffect(()=>{

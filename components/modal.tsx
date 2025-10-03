@@ -8,16 +8,13 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import AllSections from "./allsection";
 import CustomLayout from "@/app/(editor)/components/customlayout";
-// import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import UpdateDragData from "@/utils/updateDragdata";
 import { TemplateKey } from "@/app/(editor)/[templateId]/layout";
 import Portal from "./portal";
-// import SaveSessionStorage from "@/utils/saveSessionStorage";
 
 interface ModalProps {
-  setShowModal: React.Dispatch<
-    React.SetStateAction<{ show: boolean; onlyPreview?: boolean }>
+  setShowModal: React.Dispatch<React.SetStateAction<{ show: boolean; onlyPreview?: boolean }>
   >;
   showModal: { show: boolean; onlyPreview?: boolean };
   templateId: TemplateKey;
@@ -133,7 +130,7 @@ export default function Modal({
       })
     );
      }
- 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const isTemplate = templateId === "template2" ? "grid-cols-2" : "grid-cols-1";
   const isTemplatetitle1 =

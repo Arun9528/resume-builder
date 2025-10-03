@@ -21,6 +21,7 @@ export default function SettingPanel({templateId}:{templateId:TemplateKey}) {
         const { layoutClass: savedClass, reverse: savedReverse } = JSON.parse(savedLayout);
         dispatch(setLayout({ layoutClass: savedClass, reverse: savedReverse }));
      }
+ // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
   return (
     <>

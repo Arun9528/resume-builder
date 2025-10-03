@@ -101,6 +101,7 @@ export default function Rearrange() {
         secondAll:[]
       })
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [templates.first,templates.second,reverse,isTemplate1,isTemplate2]);
   const handleDeleteItem = (id: string, containerId: keyof initialSection) => {
     const Filterfirst = templates.first?.filter((d) => d !== id);
