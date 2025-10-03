@@ -146,7 +146,7 @@ export default function Inputs<
         value={value}
       />
       {error && (
-        <p className="text-red-500 text-sm  absolute top-full">
+        <p className="text-red-500 text-xs sm:text-sm  absolute top-full">
           {error?.message}
         </p>
       )}
