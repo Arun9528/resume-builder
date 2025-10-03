@@ -377,7 +377,7 @@ export default function ExperiencePage() {
                 label={`Description ${index + 1}`}
                 placeholder="Please Enter Your Description"
                 register={register}
-                validation={{ required: "Description is Required" }}
+                // validation={{ required: "Description is Required" }}
                 disabled={noExperience}
                 error={errors?.description?.[index]?.value}
               />

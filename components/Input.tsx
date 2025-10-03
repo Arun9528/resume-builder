@@ -116,7 +116,7 @@ export default function Inputs<
     "certificationcompanyname",
     "hobbyname",
     "trainingandCoursename",
-    "languagename","projectLink"
+    "languagename","projectLink","description"
   ];
   const fullWidth = Names?.includes(name) ? "w-full" : "xl:w-80 lg:w-72 w-full ";
   return (
