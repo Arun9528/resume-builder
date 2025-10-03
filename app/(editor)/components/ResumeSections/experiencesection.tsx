@@ -7,7 +7,10 @@ import React from "react";
 
 export default function ExperienceSections({
   highlightShow,
-  paths,fontColor,fontSize,lineHeight
+  paths,
+  fontColor,
+  fontSize,
+  lineHeight,
 }: SectionProps) {
   const experience = useSelector(
     (state: RootState) => state.resumeBuilder.experience
@@ -20,11 +23,16 @@ export default function ExperienceSections({
         "border-4 border-amber-500"
       }`}
     >
-      <h2 className="font-medium" style={{color:fontColor.outer,fontSize:fontSize.heading}}>Experience</h2>
-      <div style={{border:`1.5px solid ${fontColor.outer}`}}></div>
+      <h2
+        className="font-medium"
+        style={{ color: fontColor.outer, fontSize: fontSize.heading }}
+      >
+        Experience
+      </h2>
+      <div style={{ border: `1.5px solid ${fontColor.outer}` }}></div>
       <div>
         {experience.length > 0
-          ? experience.map(
+          ? experience?.map(
               ({
                 company,
                 jobtitle,
@@ -32,28 +40,63 @@ export default function ExperienceSections({
                 startDate,
                 endDate,
                 present,
+                month,
                 description,
                 id,
                 noexperience,
               }) => (
                 <div key={id}>
                   {noexperience ? (
-                    <h2 className="font-semibold" key={id} style={{color:fontColor.inner,fontSize:fontSize.mainpara}}>Fresher</h2>
+                    <h2
+                      className="font-semibold"
+                      key={id}
+                      style={{
+                        color: fontColor.inner,
+                        fontSize: fontSize.mainpara,
+                      }}
+                    >
+                      Fresher
+                    </h2>
                   ) : (
-                    <div style={{fontSize:fontSize.para,lineHeight: lineHeight === 1 ? 1.1 : lineHeight}}>
-                      <p className="font-bold" style={{fontSize:fontSize.mainpara,color:fontColor.inner}}>{company}</p>
+                    <div
+                      style={{
+                        fontSize: fontSize.para,
+                        lineHeight: lineHeight === 1 ? 1.1 : lineHeight,
+                      }}
+                    >
+                      <p
+                        className="font-bold"
+                        style={{
+                          fontSize: fontSize.mainpara,
+                          color: fontColor.inner,
+                        }}
+                      >
+                        {company}
+                      </p>
                       <div className="flex justify-between">
                         <p>{jobtitle}</p>
                         <div className="flex gap-x-3 flex-wrap">
                           <div className="flex items-center gap-x-1">
-                            <BiSolidCalendar  style={{color:fontColor.inner}} />
-                            <p className="translate-y-[1.5px]">{startDate} - {present ? "Present" : endDate} </p>
-                            {/* <span>-</span>
-                            <p></p> */}
+                            <BiSolidCalendar
+                              style={{ color: fontColor.inner }}
+                            />
+                            {startDate && (present || endDate) && (
+                              <p className="translate-y-[1.5px]">
+                                {startDate} - {present ? "Present" : endDate}{" "}
+                              </p>
+                            )}
+                            {month && <p className="translate-y-[1.5px]">
+                              {month} Months
+                            </p>}
                           </div>
                           <div className="flex items-center gap-x-1">
-                            <IoLocationSharp  style={{color:fontColor.inner}} />
-                           <p className="translate-y-[1.5px]"> {explocation}</p>
+                            <IoLocationSharp
+                              style={{ color: fontColor.inner }}
+                            />
+                            <p className="translate-y-[1.5px]">
+                              {" "}
+                              {explocation}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -62,7 +105,13 @@ export default function ExperienceSections({
                           <li
                             key={i}
                             className="text-justify custom-li"
-                            style={{"--bullet-color":fontColor.inner} as React.CSSProperties & {[key:string]:string} }
+                            style={
+                              {
+                                "--bullet-color": fontColor.inner,
+                              } as React.CSSProperties & {
+                                [key: string]: string;
+                              }
+                            }
                           >
                             {d.value}
                           </li>
@@ -74,22 +123,35 @@ export default function ExperienceSections({
               )
             )
           : ["Google"].map((d, i) => (
-              <div key={i} style={{fontSize:fontSize.para,lineHeight: lineHeight === 1 ? 1.1 : lineHeight}}>
-                <p className="font-bold" style={{fontSize:fontSize.mainpara,color:fontColor.inner}}>{d}</p>
+              <div
+                key={i}
+                style={{
+                  fontSize: fontSize.para,
+                  lineHeight: lineHeight === 1 ? 1.1 : lineHeight,
+                }}
+              >
+                <p
+                  className="font-bold"
+                  style={{
+                    fontSize: fontSize.mainpara,
+                    color: fontColor.inner,
+                  }}
+                >
+                  {d}
+                </p>
                 <div className="flex justify-between">
                   <p>Web Developer</p>
                   <div className="flex flex-wrap ">
                     <div className="flex items-center me-3 gap-x-1">
-                      <BiSolidCalendar  style={{color:fontColor.inner}} />
+                      <BiSolidCalendar style={{ color: fontColor.inner }} />
                       <p className="translate-y-[1.5px]">2025 - Present</p>
                       {/* <span>-</span>
                       <p>Present</p> */}
                     </div>
                     <div className="flex items-center gap-x-1">
-                          <IoLocationSharp style={{color:fontColor.inner}} />
-                           <p className="translate-y-[1.5px]" >California</p>
+                      <IoLocationSharp style={{ color: fontColor.inner }} />
+                      <p className="translate-y-[1.5px]">California</p>
                     </div>
-                   
                   </div>
                 </div>
                 <ul className="ps-4 list-disc">
@@ -97,7 +159,11 @@ export default function ExperienceSections({
                     <li
                       key={i}
                       className="custom-li text-justify"
-                      style={{"--bullet-color":fontColor.inner} as React.CSSProperties & {[key:string]: string}}
+                      style={
+                        {
+                          "--bullet-color": fontColor.inner,
+                        } as React.CSSProperties & { [key: string]: string }
+                      }
                     >
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Cum consequatur eius id laborum voluptatum deserunt
