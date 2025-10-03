@@ -465,12 +465,15 @@ export default function ExperiencePage() {
               </div>
                 <div className="flex justify-between">
                   <h4 className="text-lg font-semibold">{exp.jobtitle}</h4>
-                  <span className="text-gray-500">
-                    {exp.startDate} - {exp.present ? "Present" : exp.endDate}
+                  <div>
+                    <span className="text-gray-500">
+                    {exp.startDate} - {exp.present ? "Present" : exp.endDate} 
                   </span>
+                  {exp?.month && <span>{exp?.month} Months</span>}
+                  </div>
                 </div>
                 <p className="text-gray-600">
-                  {exp?.company} - {exp?.explocation} {exp?.month && <span>{exp?.month} Months</span>}
+                  {exp?.company} - {exp?.explocation} 
                 </p>
                 {exp?.description?.length > 0 && exp?.description[0]?.value !== "" && <ul className="list-disc pl-5 mt-2">
                   {exp?.description?.map((d, i) => (
