@@ -40,7 +40,7 @@ export default function ExperienceSections({
                 startDate,
                 endDate,
                 present,
-                month,
+                // month,
                 description,
                 id,
                 noexperience,
@@ -80,14 +80,14 @@ export default function ExperienceSections({
                             <BiSolidCalendar
                               style={{ color: fontColor?.inner }}
                             />
-                            {startDate && (present || endDate) && (
+                            {/* {startDate && (present || endDate) && ( */}
                               <p className="translate-y-[1.5px]">
                                 {startDate} - {present ? "Present" : endDate}{" "}
                               </p>
-                            )}
-                            {month && <p className="translate-y-[1.5px]">
+                            {/* )} */}
+                            {/* {month && <p className="translate-y-[1.5px]">
                               {month} Months
-                            </p>}
+                            </p>} */}
                           </div>
                           <div className="flex items-center gap-x-1">
                             <IoLocationSharp

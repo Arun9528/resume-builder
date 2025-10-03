@@ -18,19 +18,21 @@ import { hideError, showError } from "@/store/slices/errorSlice";
 import { AnimatePresence } from "motion/react";
 import useSaveResumeData from "@/hooks/useSaveResumeData";
 import useEditSaveData from "@/utils/editSaveData";
-const todayYear = new Date().getFullYear();
+const date = new Date();
+const todayYear = date.getFullYear();
+const todayMonth = date.getMonth() + 1;
 export default function ExperiencePage() {
   const Experiences = useSelector(
     (state: RootState) => state.resumeBuilder.experience
   );
-  const {visible} = useSelector((state:RootState)=> state.error); 
+  const { visible } = useSelector((state: RootState) => state.error);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const { nextPath, firstPart, prevPath } = useNavigation();
   const SaveResumeData = useSaveResumeData();
   const modifyResumeData = useEditSaveData();
   const router = useRouter();
-  const [isClient,setIsClient]  = useState<boolean>(false)
+  const [isClient, setIsClient] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -49,7 +51,7 @@ export default function ExperiencePage() {
       explocation: "",
       startDate: "",
       endDate: "",
-      month:"",
+      // month:"",
       present: false,
       noexperience: false,
       description: [{ value: "" }],
@@ -76,10 +78,11 @@ export default function ExperiencePage() {
       (typeof d === "boolean" && d === true) ||
       des
   );
- const isDisabled = isnoExperienceDisabled || (!BackAndRealodpage && Experiences.length > 0);
- useEffect(()=>{
-  setIsClient(true);
- },[])
+  const isDisabled =
+    isnoExperienceDisabled || (!BackAndRealodpage && Experiences.length > 0);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   useEffect(() => {
     if (isnoExperienceDisabled) {
       clearErrors("noexperience");
@@ -101,46 +104,46 @@ export default function ExperiencePage() {
   useEffect(() => {
     if (noExperience) {
       const d = {
-      id:crypto.randomUUID(),
-      company: "",
-      jobtitle: "",
-      explocation: "",
-      startDate: "",
-      endDate: "",
-      month:"",
-      present: false,
-      noexperience: noExperience,
-      description: [{ value: "" }],
-    }
-      sessionStorage.setItem("experience",JSON.stringify([d]));
-      dispatch(addExperience(d))
+        id: crypto.randomUUID(),
+        company: "",
+        jobtitle: "",
+        explocation: "",
+        startDate: "",
+        endDate: "",
+        // month:"",
+        present: false,
+        noexperience: noExperience,
+        description: [{ value: "" }],
+      };
+      sessionStorage.setItem("experience", JSON.stringify([d]));
+      dispatch(addExperience(d));
       clearErrors();
     }
-  }, [clearErrors, noExperience,dispatch]);
-  useEffect(()=>{
-    if(!visible) return;
-    const timeout = setTimeout(()=>{
-      dispatch(hideError())
-    },3000);
-    return ()=> clearTimeout(timeout);
-  },[dispatch,visible])
+  }, [clearErrors, noExperience, dispatch]);
+  useEffect(() => {
+    if (!visible) return;
+    const timeout = setTimeout(() => {
+      dispatch(hideError());
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [dispatch, visible]);
 
   const { append, remove, fields } = useFieldArray({
     control,
     name: "description",
   });
   const onSubmit: SubmitHandler<ExperienceProps> = (data) => {
-    const templateData = {first:[],second:[],other:[]}
-    const SaveData = { ...data, id: crypto.randomUUID() }
+    const templateData = { first: [], second: [], other: [] };
+    const SaveData = { ...data, id: crypto.randomUUID() };
     if (isEdit) {
       dispatch(updateExperience(data));
-      modifyResumeData(data,true)
+      modifyResumeData(data, true);
     } else if (BackAndRealodpage) {
       dispatch(addExperience(SaveData));
-      SaveResumeData(dispatch,true,templateData,SaveData)
+      SaveResumeData(dispatch, true, templateData, SaveData);
     } else {
       dispatch(addExperience(SaveData));
-      SaveResumeData(dispatch,true,templateData,SaveData)
+      SaveResumeData(dispatch, true, templateData, SaveData);
     }
     setIsEdit(false);
     reset();
@@ -180,7 +183,7 @@ export default function ExperiencePage() {
           (typeof d === "string" && d === "") ||
           (typeof d === "boolean" && d === false)
       ) && !des;
-      
+
     if (noExperience) {
       clearErrors();
       router.push(`/${firstPart}${nextPath}`);
@@ -188,25 +191,23 @@ export default function ExperiencePage() {
     } else if (EmptyDataChecked && Experiences.length > 0) {
       clearErrors();
       router.push(`/${firstPart}${nextPath}`);
-    }
-     else if (EmptyDataChecked && Experiences.length === 0) {
+    } else if (EmptyDataChecked && Experiences.length === 0) {
       const msg = "Please add at least one Experience before proceeding.";
       dispatch(showError(msg));
-    }
-     else if (isValid) {
+    } else if (isValid) {
       const msg = "Please submit the form before proceeding.";
-      dispatch(showError(msg))
+      dispatch(showError(msg));
     }
   };
 
   return (
     <div className="relative pt-8">
-        <FormNavigation
-          nextPath={nextPath}
-          prevPath={prevPath}
-          firstPart={firstPart}
-          onNext={onNext}
-        />
+      <FormNavigation
+        nextPath={nextPath}
+        prevPath={prevPath}
+        firstPart={firstPart}
+        onNext={onNext}
+      />
       <div className="flex items-center gap-x-2 pt-3">
         <label htmlFor="isFresher">No Experience(Fresher)</label>
         <input
@@ -218,7 +219,7 @@ export default function ExperiencePage() {
               "No Experience is Required if You are Fresher",
           })}
           className="size-4"
-          {...(isClient ? {disabled:isDisabled} : {})}
+          {...(isClient ? { disabled: isDisabled } : {})}
         />
         {isClient && Experiences.length === 0 && errors.noexperience && (
           <p className="text-red-500 text-sm ms-5">
@@ -267,24 +268,36 @@ export default function ExperiencePage() {
           type="text"
           label="To"
           name="startDate"
-          placeholder="Enter Year (e.g., 2023)"
+          placeholder="Enter Year (e.g., 01/2023)"
           register={register}
           validation={{
-            // required: "Please Write your Start Date",
+            required: "Please Write your Start Date",
             pattern: {
-              value: /^\d{4}$/,
-              message: "Year must be 4 digits",
+              value: /^(0[1-9]|1[0-2])\/\d{4}$/,
+              message: "Please use MM/YYYY format",
             },
             validate: {
-             empty:(v)=> (v === "" || v === null) || true,
-              notFuture: (v) =>
-                Number(v) <= todayYear || "Start Date can't be in the future",
+              notFuture: (v) => {
+                const [month, year] = v?.toString()?.split("/")?.map(Number);
+                return (
+                  year < todayYear ||
+                  (year === todayYear && month <= todayMonth) ||
+                  "Start date cannot be in the future"
+                );
+              },
+
               beforEnd: (v) => {
                 const endDateval = watch("endDate");
-                if(!endDate) return true
+                if (!endDateval) return true;
+                const [startMonth, startYear] = v
+                  ?.toString()
+                  ?.split("/")
+                  ?.map(Number);
+                const [endMonth, endYear] = endDateval?.split("/")?.map(Number);
+                const startDate = new Date(startYear, startMonth - 1);
+                const endDate = new Date(endYear, endMonth - 1);
                 return (
-                  Number(v) < Number(endDateval) ||
-                  "Start Date must be before End Date"
+                  startDate < endDate || "Start date must be before end date"
                 );
               },
             },
@@ -297,31 +310,33 @@ export default function ExperiencePage() {
             type="text"
             label="Form"
             name="endDate"
-            placeholder="Enter Year (e.g., 2023)"
+            placeholder="Enter Year (e.g., 01/2023)"
             register={register}
             validation={{
-              // required:
-              //   !isPresent &&
-              //   "End Date is Required if present is not Checked",
+              required:
+                !isPresent && "End Date is Required if present is not Checked",
               pattern: {
-                value: /^\d{4}$/,
-                message: "Year must be 4 digits",
+                value: /^(0[1-9]|1[0-2])\/\d{4}$/,
+                message: "Please use MM/YYYY format",
               },
               validate: {
-                empty:(v)=> (v === "" || v === null) || true,
-                notFuture: (v) =>
-                  isPresent
-                    ? true
-                    : Number(v) <= todayYear ||
-                      "End Date can't be in the future",
-                afterStart: (v) => {
-                  if (isPresent) return true;
-                  const startDateVal = watch("startDate");
-                  if(!startDateVal) return true;
+                notFuture: (v) => {
+                  const [month, year] = v?.toString()?.split("/")?.map(Number);
                   return (
-                    Number(v) > Number(startDateVal) ||
-                    "End Date must be after Start Date"
+                    year < todayYear ||
+                    (year === todayYear && month <= todayMonth) ||
+                    "End date cannot be in the future"
                   );
+                },
+                afterStart: (v) => {
+                  if (isPresent || !v) return true;
+                  const startDateVal = watch("startDate");
+                  if (!startDateVal) return true;
+                  const [endMonth, endYear] = v?.toString()?.split("/")?.map(Number);
+                  const [startMonth, startYear] = startDateVal?.split("/")?.map(Number);
+                  const startDate = new Date(startYear, startMonth - 1);
+                  const endDate = new Date(endYear, endMonth - 1);
+                  return endDate > startDate || "End date must be after start date";
                 },
               },
             }}
@@ -349,27 +364,9 @@ export default function ExperiencePage() {
             </label>
           </div>
         </div>
-        <Inputs
-         type = "number"
-         label="Month"
-         name = "month"
-         placeholder="Enter Month (e.g.,1)"
-         register={register}
-         validation={{
-          validate:{
-            notMonth:(v)=>{
-              if(v === "" || v === null) return true;
-              const n = Number(v);
-              if (Number?.isNaN(n)) return "Month must be a number";
-              return (n >= 1 && n <= 12) || "Please month Should be 1 to 12";
-            }
-          }
-         }}
-         error={errors?.month}
-        />
         <div className="w-full">
           {fields?.map((field, index) => (
-            <div key={field?.id} >
+            <div key={field?.id}>
               <Inputs
                 key={field?.id}
                 type="text"
@@ -384,12 +381,12 @@ export default function ExperiencePage() {
               {fields?.length > 1 && (
                 <div className="text-end">
                   <button
-                  type="button"
-                  className="text-red-500 cursor-pointer"
-                  onClick={() => remove(index)}
-                >
-                  Remove
-                </button>
+                    type="button"
+                    className="text-red-500 cursor-pointer"
+                    onClick={() => remove(index)}
+                  >
+                    Remove
+                  </button>
                 </div>
               )}
             </div>
@@ -434,64 +431,65 @@ export default function ExperiencePage() {
             Cancel
           </button>
         )}
-      
       </form>
       {isClient && (
         <div className="mt-8">
-        <h3 className="text-xl font-bold mb-4">Experiences</h3>
-        { Experiences[0]?.noexperience === true ? (
-          ""
-        ) : Experiences.length > 0 ? (
-          Experiences.map((exp) => (
-            <div key={exp.id} className="mb-6 p-4 border rounded-lg">
-              <div className=" flex gap-x-5 justify-end">
-                <button
-                  onClick={() => handleEdit(exp.id)}
-                  className={`text-blue-500 hover:text-blue-700 cursor-pointer`}
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                     dispatch(deleteExperience(exp.id))
-                    modifyResumeData(exp,false)
-                  }
-                  }
-                  className={` ms-8 ${isEdit ? "text-gray-400 cursor-not-allowed" : "text-red-600 cursor-pointer"}`}
-                   disabled={isEdit}
-                >
-                  Delete
-                </button>
-              </div>
+          <h3 className="text-xl font-bold mb-4">Experiences</h3>
+          {Experiences[0]?.noexperience === true ? (
+            ""
+          ) : Experiences.length > 0 ? (
+            Experiences.map((exp) => (
+              <div key={exp.id} className="mb-6 p-4 border rounded-lg">
+                <div className=" flex gap-x-5 justify-end">
+                  <button
+                    onClick={() => handleEdit(exp.id)}
+                    className={`text-blue-500 hover:text-blue-700 cursor-pointer`}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      dispatch(deleteExperience(exp.id));
+                      modifyResumeData(exp, false);
+                    }}
+                    className={` ms-8 ${
+                      isEdit
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-red-600 cursor-pointer"
+                    }`}
+                    disabled={isEdit}
+                  >
+                    Delete
+                  </button>
+                </div>
                 <div className="flex justify-between">
                   <h4 className="text-lg font-semibold">{exp.jobtitle}</h4>
-                  <div>
-                    <span className="text-gray-500">
-                    {exp.startDate} - {exp.present ? "Present" : exp.endDate} 
+                  {/* <div> */}
+                  <span className="text-gray-500">
+                    {exp.startDate} - {exp.present ? "Present" : exp.endDate}
                   </span>
-                  {exp?.month && <span>{exp?.month} Months</span>}
-                  </div>
+                  {/* {exp?.month && <span>{exp?.month} Months</span>} */}
+                  {/* </div> */}
                 </div>
                 <p className="text-gray-600">
-                  {exp?.company} - {exp?.explocation} 
+                  {exp?.company} - {exp?.explocation}
                 </p>
-                {exp?.description?.length > 0 && exp?.description[0]?.value !== "" && <ul className="list-disc pl-5 mt-2">
-                  {exp?.description?.map((d, i) => (
-                    <li key={i}>{d?.value}</li>
-                  ))}
-                </ul>}
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-500">No experiences added yet.</p>
-        )}
-      </div>
+                {exp?.description?.length > 0 &&
+                  exp?.description[0]?.value !== "" && (
+                    <ul className="list-disc pl-5 mt-2">
+                      {exp?.description?.map((d, i) => (
+                        <li key={i}>{d?.value}</li>
+                      ))}
+                    </ul>
+                  )}
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-500">No experiences added yet.</p>
+          )}
+        </div>
       )}
-      <AnimatePresence mode="wait">
-        {
-        visible && <PopupError/>
-         }
-      </AnimatePresence>
+      <AnimatePresence mode="wait">{visible && <PopupError />}</AnimatePresence>
     </div>
   );
 }

@@ -115,7 +115,6 @@ export interface ExperienceProps {
   explocation: string;
   startDate: string;
   endDate: string | "Present";
-  month:string
   present: boolean;
   noexperience: boolean;
   description: Array<{ value: string }>;

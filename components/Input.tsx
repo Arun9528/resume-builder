@@ -133,7 +133,6 @@ export default function Inputs<
         autoComplete="off"
         placeholder={placeholder}
         className={`outline-0 ps-2 border border-gray-300 py-2.5 rounded-md placeholder:text-gray-500 w-full
-        ${name.includes("description") ? "!w-full" : ""} 
         ${disabled ? "bg-gray-400 cursor-not-allowed" : ""}
          ${type === "date" ? "pe-3" : ""} 
          ${label.startsWith("Description") ? "w-full" : ""}
